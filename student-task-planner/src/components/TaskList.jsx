@@ -1,4 +1,9 @@
-function TaskList({ tasks }) {
+import React from 'react';
+import TaskCard from './TaskCard';
+import sampleTasks from '../data/tasks';
+
+function TaskList({ tasks: tasksProp } = {}) {
+  const tasks = tasksProp ?? sampleTasks;
   const safeTasks = Array.isArray(tasks) ? tasks : [];
 
   if (safeTasks.length === 0) {
@@ -13,9 +18,7 @@ function TaskList({ tasks }) {
   return (
     <div className="task-list">
       {safeTasks.map((task) => (
-        <div key={task.id} className="task-item card card--subtle">
-          <p>{task.title}</p>
-        </div>
+        <TaskCard key={task.id} task={task} />
       ))}
     </div>
   );

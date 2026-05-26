@@ -1,3 +1,3 @@
 export const APP_CONFIG = {
-  title: "Student Task Planner",
+  title: "Daily Task Manager",
 };
