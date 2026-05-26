@@ -98,41 +98,72 @@
 این کار باعث شد تغییرات قبل از ورود به نسخه اصلی پروژه بررسی شوند و ساختار توسعه پروژه منظم‌تر باشد.
 
 ---
+## گزارش conflictهای ایجادشده و نحوه رفع آن‌ها
 
-## گزارش conflictهای ایجادشده
-
-در طول توسعه پروژه، حداقل دو conflict ایجاد شد. این conflictها به‌صورت دستی بررسی و حل شدند.
-
-### Conflict اول
-
-**محل ایجاد conflict:**  
-`[بعداً تکمیل شود]`
-
-**branchهای درگیر:**  
-`[بعداً تکمیل شود]`
-
-**علت ایجاد conflict:**  
-`[بعداً تکمیل شود]`
-
-**نحوه رفع conflict:**  
-`[بعداً تکمیل شود]`
+در فرآیند توسعه پروژه، دو conflict اصلی هنگام ادغام branchها ایجاد شد. هر دو conflict به‌صورت دستی بررسی و رفع شدند.
 
 ---
 
-### Conflict دوم
+### Conflict اول: ادغام `feature/tasks` با `dev`
 
-**محل ایجاد conflict:**  
-`[بعداً تکمیل شود]`
+این conflict هنگام ادغام branch `feature/tasks` در branch `dev` ایجاد شد. در این merge، چهار فایل دچار conflict شدند:
 
-**branchهای درگیر:**  
-`[بعداً تکمیل شود]`
+- `student-task-planner/src/config/constants.js`
+- `student-task-planner/src/App.jsx`
+- `student-task-planner/src/components/TaskList.jsx`
+- `student-task-planner/src/App.css`
 
-**علت ایجاد conflict:**  
-`[بعداً تکمیل شود]`
+برای رفع conflictها، ابتدا فایل‌های conflictدار بررسی شدند. چون هدف اصلی branch `feature/tasks` اضافه‌کردن ساختار کامل‌تر taskها بود، در بیشتر بخش‌های conflictدار نسخه‌ی branch `feature/tasks` به‌عنوان نسخه اصلی انتخاب شد.
 
-**نحوه رفع conflict:**  
-`[بعداً تکمیل شود]`
+در فایل `constants.js` مقدار عنوان برنامه از branch `feature/tasks` انتخاب شد و مقدار نهایی برابر با `"Daily Task Manager"` قرار گرفت.
 
+در فایل `App.jsx` نسخه‌ی branch `feature/tasks` مبنا قرار گرفت، چون شامل ساختار کامل‌تر برنامه، مدیریت state، فیلتر وضعیت taskها و کامپوننت‌های جدید بود. با این حال، بعضی بهبودهای موجود در `dev` مانند کلاس تمیزتر `footer-note` نیز حفظ شدند.
+
+در فایل `TaskList.jsx` پیاده‌سازی branch `feature/tasks` که از کامپوننت `TaskCard` استفاده می‌کرد حفظ شد، اما قابلیت empty state و بررسی معتبر بودن آرایه‌ی taskها از branch `dev` نیز به آن اضافه شد.
+
+در فایل `App.css` برای selectorهایی که در هر دو branch تغییر کرده بودند، اولویت با نسخه‌ی `feature/tasks` بود. اما استایل‌هایی که فقط در branch `dev` اضافه شده بودند و conflict واقعی ایجاد نمی‌کردند، مانند کلاس‌های کمکی، empty state و بهبودهای responsive، حفظ شدند.
+
+در نهایت پس از رفع دستی conflictها، فایل‌های اصلاح‌شده stage و commit شدند.
+
+دستورهای اصلی استفاده‌شده:
+
+```bash
+git checkout dev
+git merge feature/tasks
+
+# پس از رفع دستی conflictها در فایل‌ها
+git add student-task-planner/src/config/constants.js
+git add student-task-planner/src/App.jsx
+git add student-task-planner/src/components/TaskList.jsx
+git add student-task-planner/src/App.css
+
+git commit -m "Merge feature/tasks into dev and resolve conflicts"
+```
+---
+### Conflict دوم: ادغام `docs/readme-report` با `dev`
+
+این conflict هنگام ادغام branch `docs/readme-report` با branch `dev` ایجاد شد. فایل conflictدار در این مرحله `README.md` بود.
+
+علت conflict این بود که در branch `docs/readme-report` گزارش پروژه و مستندات README نوشته شده بود، اما در branch `dev` نیز تغییراتی روی همین فایل وجود داشت. بنابراین Git نتوانست به‌صورت خودکار تصمیم بگیرد که کدام نسخه از README باید نگه داشته شود.
+
+برای رفع conflict، ابتدا branch `dev` داخل branch `docs/readme-report` merge شد تا conflict به‌صورت محلی ایجاد شود. سپس تصمیم گرفته شد نسخه‌ی README موجود در branch `docs/readme-report` نگه داشته شود، چون این نسخه شامل گزارش کامل‌تر پروژه بود.
+
+از آن‌جایی که هنگام merge کردن `dev` داخل `docs/readme-report`، نسخه‌ی branch فعلی همان `ours` محسوب می‌شد، فایل `README.md` با نسخه‌ی `ours` نگه داشته شد. سپس فایل stage، commit و push شد تا Pull Request بدون conflict قابل ادغام باشد.
+
+دستورهای اصلی استفاده‌شده:
+
+```bash
+git fetch --all --prune
+git checkout docs/readme-report
+git merge origin/dev
+
+# نگه داشتن نسخه README از branch docs/readme-report
+git checkout --ours README.md
+
+git add README.md
+git commit -m "Merge dev into docs/readme-report and resolve README conflict"
+git push origin docs/readme-report
+```
 ---
 
 ## استقرار پروژه با GitHub Actions و GitHub Pages
