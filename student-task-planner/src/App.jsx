@@ -28,7 +28,8 @@ function App() {
       </main>
 
       <footer className="footer">
-        <p>&copy; 2026 Student Task Planner</p>
+        <p>&copy; 2026 Student Task Planner - SE Lab Team (Nima & Abolfazl)</p>
+        <p style={{ fontSize: '0.85em', marginTop: '5px' }}>This app is deployed using GitHub Pages.</p>
       </footer>
     </div>
   );
