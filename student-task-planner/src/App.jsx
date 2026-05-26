@@ -4,6 +4,7 @@ import Header from "./components/Header";
 import AddTaskForm from "./components/AddTaskForm";
 import TaskList from "./components/TaskList";
 import TaskStatusFilter from "./components/TaskStatusFilter";
+import TaskStats from "./components/TaskStats";
 import sampleTasks from "./data/tasks";
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
         <section className="tasks-section" id="tasks">
           <h2>Your Tasks</h2>
           <TaskStatusFilter value={statusFilter} onChange={setStatusFilter} />
+          <TaskStats tasks={sampleTasks} />
           <AddTaskForm />
           <TaskList tasks={sampleTasks} statusFilter={statusFilter} />
         </section>
