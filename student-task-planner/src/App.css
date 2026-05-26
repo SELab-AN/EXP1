@@ -217,6 +217,42 @@
   color: #fff;
 }
 
+/* Task Stats */
+.task-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.task-stats__item {
+  text-align: center;
+  padding: 12px 8px;
+  background: var(--bg-color);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+.task-stats__value {
+  display: block;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.task-stats__label {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+@media (max-width: 500px) {
+  .task-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
 /* Task Form */
 .task-form {
   display: flex;
@@ -394,6 +430,12 @@
 .task-item span {
   font-size: 0.9rem;
   color: var(--text-muted);
+}
+
+.task-list__empty {
+  text-align: center;
+  color: var(--text-muted);
+  padding: 20px;
 }
 
 /* Footer */

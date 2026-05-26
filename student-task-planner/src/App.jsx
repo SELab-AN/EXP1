@@ -1,18 +1,14 @@
 import "./App.css";
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import Header from "./components/Header";
 import AddTaskForm from "./components/AddTaskForm";
 import TaskList from "./components/TaskList";
 import TaskStatusFilter from "./components/TaskStatusFilter";
+import TaskStats from "./components/TaskStats";
 import sampleTasks from "./data/tasks";
 
 function App() {
   const [statusFilter, setStatusFilter] = useState("all");
-
-  const visibleTasks = useMemo(() => {
-    if (statusFilter === "all") return sampleTasks;
-    return sampleTasks.filter((task) => task.status === statusFilter);
-  }, [statusFilter]);
 
   return (
     <div className="app-container" id="home">
@@ -32,8 +28,9 @@ function App() {
         <section className="tasks-section" id="tasks">
           <h2>Your Tasks</h2>
           <TaskStatusFilter value={statusFilter} onChange={setStatusFilter} />
+          <TaskStats tasks={sampleTasks} />
           <AddTaskForm />
-          <TaskList tasks={visibleTasks} />
+          <TaskList tasks={sampleTasks} statusFilter={statusFilter} />
         </section>
       </main>
 
