@@ -18,6 +18,7 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    timeout-minutes: 5
 
     defaults:
       run:
@@ -30,14 +31,20 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 18
           cache: npm
           cache-dependency-path: student-task-planner/package-lock.json
 
-      - name: Install dependencies
+      - name: Show Node/npm versions
         run: |
-          npm ci --include=dev --no-audit --no-fund \
-          || (echo "npm ci failed; falling back to npm install" && npm install --include=dev --no-audit --no-fund)
+          node --version
+          npm --version
+
+      - name: Install dependencies
+        timeout-minutes: 3
+        run: |
+          timeout 3m npm ci --include=dev --no-audit --no-fund --progress=false --prefer-offline \
+          || (echo "npm ci failed or timed out; falling back to npm install" && timeout 3m npm install --include=dev --no-audit --no-fund --progress=false --prefer-offline)
 
       - name: Build project
         run: npm run build
