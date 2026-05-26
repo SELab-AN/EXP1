@@ -1,6 +1,6 @@
 import "./App.css";
 import Header from "./components/Header";
-import TaskForm from "./components/TaskForm";
+import AddTaskForm from "./components/AddTaskForm";
 import TaskList from "./components/TaskList";
 
 function App() {
@@ -21,7 +21,7 @@ function App() {
 
         <section className="tasks-section" id="tasks">
           <h2>Your Tasks</h2>
-          <TaskForm />
+          <AddTaskForm />
           <TaskList />
         </section>
       </main>
