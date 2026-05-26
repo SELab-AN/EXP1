@@ -6,7 +6,7 @@ import tasks from "./data/tasks";
 
 function App() {
   return (
-    <div className="app-container">
+    <div className="app-container" id="home">
       <Header />
       
       <section className="hero">
@@ -15,12 +15,12 @@ function App() {
       </section>
 
       <main className="main-content">
-        <section className="about-section">
+        <section className="about-section" id="about">
           <h2>About</h2>
           <p>This application helps students keep track of their daily tasks and academic deadlines.</p>
         </section>
 
-        <section className="tasks-section">
+        <section className="tasks-section" id="tasks">
           <h2>Your Tasks</h2>
           <TaskForm />
           <TaskList tasks={tasks} />
