@@ -1,0 +1,110 @@
+.task-card {
+  background: var(--surface, #ffffff);
+  border: 1px solid var(--border, #e2e8f0);
+  padding: 20px;
+  border-radius: var(--radius, 12px);
+  box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  margin-bottom: 16px;
+}
+
+.task-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+}
+
+.task-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.task-card-title {
+  margin: 0;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--text-main, #1e293b);
+  line-height: 1.4;
+}
+
+.task-card-description {
+  margin: 0;
+  font-size: 0.95rem;
+  color: var(--text-muted, #64748b);
+  line-height: 1.5;
+}
+
+.task-card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
+  padding-top: 12px;
+  border-top: 1px solid var(--border, #e2e8f0);
+}
+
+.task-priority-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.task-priority-label {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text-muted, #64748b);
+}
+
+/* Badges */
+.task-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: capitalize;
+  letter-spacing: 0.025em;
+  white-space: nowrap;
+}
+
+/* Status variants */
+.status-todo,
+.status-to-do,
+.status-pending {
+  background-color: #f1f5f9;
+  color: #475569;
+}
+
+.status-in-progress,
+.status-doing {
+  background-color: #eff6ff;
+  color: #2563eb;
+}
+
+.status-done,
+.status-completed {
+  background-color: #f0fdf4;
+  color: #16a34a;
+}
+
+/* Priority variants */
+.priority-low {
+  background-color: #f8fafc;
+  color: #64748b;
+  border: 1px solid #e2e8f0;
+}
+
+.priority-medium {
+  background-color: #fef9c3;
+  color: #ca8a04;
+}
+
+.priority-high {
+  background-color: #fef2f2;
+  color: #dc2626;
+}
