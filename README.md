@@ -39,7 +39,7 @@
 
 | مورد | لینک |
 |---|---|
-| GitHub Pages | `[لینک GitHub Pages را اینجا قرار دهید]` |
+| GitHub Pages | `https://selab-an.github.io/EXP1/` |
 
 ---
 
