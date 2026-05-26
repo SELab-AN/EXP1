@@ -10,21 +10,21 @@ const tasks = [
     id: 2,
     title: "Study for math exam",
     description: "Review chapters 4-6 on Calculus and practice limit problems.",
-    status: "pending",
+    status: "todo",
     priority: "medium"
   },
   {
     id: 3,
     title: "Read literature assignment",
     description: "Read chapters 1-3 of 'The Great Gatsby' and take notes for the essay.",
-    status: "completed",
+    status: "done",
     priority: "low"
   },
   {
     id: 4,
     title: "Prepare lab report",
     description: "Write the introduction and methodology sections for the physics lab.",
-    status: "pending",
+    status: "todo",
     priority: "high"
   }
 ];
